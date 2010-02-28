@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+  <title>JSReflection - A pure Javascript reflection utility</title>
+
+  
+</head><body>
+<h1>JSReflection</h1>
+
+JSReflection is a simple pure Javascript reflection utility.&nbsp; It
+can take any DOM element and flip it or reflect it.&nbsp; The
+difference between reflection and flipping is that reflections have a
+fadeout.&nbsp; JSReflection depends on jQuery.&nbsp; The current
+version was written against jQuery 1.4.2, which is included in the
+JSReflection archive.<br>
+
+<br>
+
+Before using JSReflection, you should know how the technique works,
+because it is not a good idea to use in all situations.&nbsp;
+JSReflection works by creating one copy of the DOM element <span style="font-weight: bold;">per pixel</span>.&nbsp; The number of
+copies is specific to the dimension in the direction you are flipping
+the object.&nbsp; If you are flipping or reflecting vertically, it's
+the height in pixels that matters.&nbsp; If you are flipping or
+reflecting horizontally, only the pixel width of the object
+matters.&nbsp; This is the only known technique for flipping anything
+in the DOM.&nbsp; If you use JSReflection to vertically flip or reflect
+an item that is 30 pixels high, you end up with 31 copies of that
+element in your DOM.&nbsp; If you horizontally flip an item that is 100
+pixels wide, you end up with 101 copies.&nbsp; Therefor, the larger the
+item in the direction you plan to flip, the more intensive the work on
+the browser.&nbsp; Your page performance may suffer greatly. <br>
+
+<br>
+
+Also remember that this copying technique is copying an entire dom tree
+for an object, using the cloneNode method.&nbsp; So if the object you
+reflect is not itself simple, you may greatly impact the performance of
+your DOM.<br>
+
+<br>
+
+Overall, if you stick to reflecting simple objects in their smaller
+dimension (reflect wide things such as words vertically, for instance),
+the impact to your page performance should be minimal.<br>
+
+<br>
+
+By default, all you need to do to use JSReflection is this:<br>
+
+<br>
+
+&lt;script src="jquery-1.4.2.min.js"&gt;&lt;/script&gt;<br>
+
+&lt;script src="reflect.js"&gt;&lt;/script&gt;<br>
+
+<br>
+
+Then you give anything you want to flip or reflect one of the following
+classes (such as, 'class="reflectV"'):<br>
+
+<ul>
+
+  <li>flipH</li>
+  <li>flipV</li>
+  <li>reflectH</li>
+  <li>reflectV</li>
+</ul>
+
+<br>
+
+The script has several parameters that you can override.&nbsp; <br>
+
+<ul>
+
+  <li>flipVClass (default: "flipV")</li>
+  <li>flipHClass (default: "flipH")</li>
+  <li>reflectVClass (default: "reflectV")</li>
+  <li>reflectHClass (default: "reflectH")</li>
+  <li>reflectionStartingOpacityPercent (default: 50)</li>
+  <li>reflectionEndingOpacityPercent (default: 10)</li>
+  <li>relectionOffset (default: 2)<br>
+  </li>
+</ul>
+
+To override them, create a &lt;script&gt; block before including the
+reflect.js script, and set any of the following variables.&nbsp; For
+example:<br>
+
+<br>
+
+&lt;script&gt;<br>
+
+&nbsp;&nbsp; var reflectVClass = "defaultTitle";<br>
+
+&nbsp;&nbsp; var reflectionStartingOpacityPercent = 30;<br>
+
+&nbsp;&nbsp; var reflectionEndingOpacityPercent = 0;<br>
+
+&lt;/script&gt;<br>
+
+&lt;script src="jquery-1.4.2.min.js"&gt;&lt;/script&gt;<br>
+
+&lt;script src="reflect.js"&gt;&lt;/script&gt;<br>
+
+<br>
+</body></html>
