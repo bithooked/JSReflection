@@ -2,8 +2,6 @@ JSReflection - A pure Javascript reflection utility
 
 JSReflection is a simple pure Javascript reflection utility.  It can take any DOM element and flip it or reflect it.  The difference between reflection and flipping is that reflections have a fadeout.  JSReflection depends on jQuery.  It should work with any version of jQuery, but the current version was written against jQuery 1.4.2, which is included in the JSReflection archive. 
 
-See it in action: http://dmartin.org/files/reflect-prototype.html
-
 Before using JSReflection, you should know how the technique works, because it is not a good idea to use in all situations.  JSReflection works by creating one copy of the DOM element per pixel.  The number of copies is specific to the dimension in the direction you are flipping the object.  If you are flipping or reflecting vertically, it's the height in pixels that matters.  If you are flipping or reflecting horizontally, only the pixel width of the object matters.  This is the only known technique for flipping anything in the DOM.  If you use JSReflection to vertically flip or reflect an item that is 30 pixels high, you end up with 31 copies of that element in your DOM.  If you horizontally flip an item that is 100 pixels wide, you end up with 101 copies.  Therefor, the larger the item in the direction you plan to flip, the more intensive the work on the browser.  Your page performance may suffer greatly. 
 
 Also remember that this copying technique is copying an entire dom tree for an object, using the cloneNode method.  So if the object you reflect is not itself simple, you may greatly impact the performance of your DOM.
